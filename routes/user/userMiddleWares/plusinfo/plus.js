@@ -9,7 +9,7 @@ const app = express();
 
 let _storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, '../../../../uploads');
+        cb(null, '/home/ubuntu/dbguss/uploads');
     },
     filename: (req, file, cb) => {
         cb(null, file.originalname + '-' + Date.now());
@@ -24,9 +24,9 @@ let decoded;
 app.post('/', upload.single('userfile'), (req, res) => {
     // file check
     if(req.file) {
-        path = 'localhost:3000/static/' + req.file.filename
+        path = '13.125.186.175/static/' + req.file.filename
     } else {
-        path = 'localhost:3000/static/image/1.jpg'
+        path = '13.125.186.175/static/image/1.jpg'
     }
     // login check
     if(req.body.token) {
