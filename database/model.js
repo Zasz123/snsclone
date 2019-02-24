@@ -10,9 +10,13 @@ const comment = require('./model/comment');
 
 exports.comment = comment;
 
-const heart = require('./model/heart');
+const feedHeart = require('./model/feedHeart');
 
-exports.heart = heart;
+exports.feedHeart = feedHeart;
+
+const comHeart = require('./model/comHeart');
+
+exports.comHeart = comHeart;
 
 // const home = require('./model/home');
 

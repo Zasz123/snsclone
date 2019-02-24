@@ -1,9 +1,10 @@
+require('dotenv').config();
 const Sequelize = require('sequelize');
 
 const model = require('./model');
 
-const sequelize = new Sequelize('node_bbs', 'root', 'cjdfhrql', {
-    host: '127.0.0.1',
+const sequelize = new Sequelize('yang', process.env.DB_USER, process.env.DB_PASS, {
+    host: process.env.DB_HOST,
     port: '3306',
     dialect: 'mysql'
 });
@@ -22,7 +23,8 @@ sequelize.authenticate()
 const User = sequelize.define('user', model.user);
 const Feed = sequelize.define('feed', model.feed);
 const Comments = sequelize.define('comment', model.comment);
-const Heart = sequelize.define('heart', model.heart);
+const FeedHeart = sequelize.define('feedHeart', model.feedHeart);
+const ComHeart = sequelize.define('comHeart', model.comHeart);
 // const Home = sequelize.define('home', model.home);
 // const Group = sequelize.define('group', model.group);
 // const User_Group = sequelize.define('user_group', model.user_group);
@@ -33,8 +35,8 @@ Feed.belongsTo(User, {foreignKey: 'user_id'});
 Feed.hasMany(Comments, {foreignKey: 'feed_id'});
 Comments.belongsTo(Feed, {foreignKey: 'feed_id'});
 
-Feed.hasMany(Heart, {foreignKey: 'feed_id'});
-Heart.belongsTo(Feed, {foreignKey: 'feed_id'});
+Feed.hasMany(FeedHeart, {foreignKey: 'feed_id'});
+FeedHeart.belongsTo(Feed, {foreignKey: 'feed_id'});
 
 User.hasMany(Feed, {foreignKey: 'user_id'});
 Feed.belongsTo(User, {foreignKey: 'user_id'});
@@ -49,7 +51,7 @@ Feed.belongsTo(User, {foreignKey: 'user_id'});
 //     through: User_Group, foreignKey: 'group_id'
 // });
 
-sequelize.sync({force: true}).then(() => {
+sequelize.sync({force: false}).then(() => {
     console.log('table created');
 }).catch((err) => {
     if(err) {

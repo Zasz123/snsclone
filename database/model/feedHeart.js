@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const heart = {
+const feedHeart = {
     feed_id: {
         type: Sequelize.INTEGER,
         allowNull: false
@@ -11,4 +11,4 @@ const heart = {
     }
 }
 
-module.exports = heart;
+module.exports = feedHeart;

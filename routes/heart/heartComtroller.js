@@ -2,11 +2,11 @@ const { Router } = require('express');
 
 const router = Router();
 
-const addHeartRouter = require('./heartMiddleWares/addHeart/add');
-const deleteHeartRouter = require('./heartMiddleWares/deleteHeart/delete');
+const addFeedHeartRouter = require('./heartMiddleWares/addFeedHeart/add');
+const addComHeartRouter = require('./heartMiddleWares/addComHeart/addCom');
 
-router.use('/', addHeartRouter);
+router.use('/f', addFeedHeartRouter);
 
-router.use('/delete', deleteHeartRouter);
+router.use('/c', addComHeartRouter);
 
 module.exports = router;

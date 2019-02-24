@@ -19,16 +19,21 @@ app.post('/:id', (req, res) => {
             error: "not logged in"
         });
     }
-    sequelize.models.heart.create({
-        feed_id: req.params.id,
+    sequelize.models.comHeart.create({
+        comment_id: req.params.id,
         user_id: decoded.uid
     }).then(() => {
-        sequelize.models.feed.update({
-            heart: heart+1
+        sequelize.models.comment.update({
+            heart: sequelize.literal('heart + 1')
         },{
             where: {
-                feed_id: req.params.id
+                id: req.params.id
             }
+        }).then(() => {
+            res.json({
+                success: true,
+                error: false
+            })
         })
     }).catch((err) => {
         if(err) {

@@ -16,6 +16,11 @@ const reply = {
     commentContent: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    heart: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        defaultValue: 0
     }
 };
 
