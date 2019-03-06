@@ -11,6 +11,9 @@ const showFeedRouter = require('./feedMiddleWares/showPoster/tkd');
 const updateFeedRouter = require('./feedMiddleWares/updateFeed/updateFeed');
 const userFeedRouter = require('./feedMiddleWares/userFeed/users');
 
+const testone = require('./feedMiddleWares/makeFeed/oneImage');
+const testtwo = require('./feedMiddleWares/makeFeed/twoImage');
+
 // delete router
 router.use('/delete', deleteFeedRouter);
 
@@ -34,5 +37,9 @@ router.use('/update', updateFeedRouter);
 
 // user feed router
 router.use('/pro', userFeedRouter);
+
+
+router.use('/one', testone);
+router.use('/two', testtwo);
 
 module.exports = router;

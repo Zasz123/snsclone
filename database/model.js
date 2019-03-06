@@ -18,14 +18,6 @@ const comHeart = require('./model/comHeart');
 
 exports.comHeart = comHeart;
 
-// const home = require('./model/home');
+const feedImage = require('./model/feedImage');
 
-// exports.home = home;
-
-const group = require('./model/group');
-
-exports.group = group;
-
-const user_group = require('./model/user_group');
-
-exports.user_group = user_group;
+exports.feedImage = feedImage;

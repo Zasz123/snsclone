@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 
 const model = require('./model');
 
-const sequelize = new Sequelize('yang', 'root', 'root', {
+const sequelize = new Sequelize('yang', 'root', 'cjdfhrql', {
     host: '127.0.0.1',
     port: '3306',
     dialect: 'mysql'
@@ -25,9 +25,7 @@ const Feed = sequelize.define('feed', model.feed);
 const Comments = sequelize.define('comment', model.comment);
 const FeedHeart = sequelize.define('feedHeart', model.feedHeart);
 const ComHeart = sequelize.define('comHeart', model.comHeart);
-// const Home = sequelize.define('home', model.home);
-// const Group = sequelize.define('group', model.group);
-// const User_Group = sequelize.define('user_group', model.user_group);
+const FeedImages = sequelize.define('feedImage', model.feedImage);
 
 User.hasMany(Feed, {foreignKey: 'user_id'});
 Feed.belongsTo(User, {foreignKey: 'user_id'});
@@ -35,23 +33,22 @@ Feed.belongsTo(User, {foreignKey: 'user_id'});
 Feed.hasMany(Comments, {foreignKey: 'feed_id'});
 Comments.belongsTo(Feed, {foreignKey: 'feed_id'});
 
-Feed.hasMany(FeedHeart, {foreignKey: 'feed_id'});
-FeedHeart.belongsTo(Feed, {foreignKey: 'feed_id'});
-
 User.hasMany(Feed, {foreignKey: 'user_id'});
 Feed.belongsTo(User, {foreignKey: 'user_id'});
 
-// Group.hasMany(Home, {foreignKey: 'group_id'});
-// Home.belongsTo(Group, {foreignKey: 'group_id'});
+Feed.hasMany(FeedImages, {foreignKey: 'feed_id'});
+FeedImages.belongsTo(Feed, {foreignKey: 'feed_id'});
 
-// User.belongsToMany(Group, {
-//     through: User_Group, foreignKey: 'user_id'
-// });
-// Group.belongsToMany(User, {
-//     through: User_Group, foreignKey: 'group_id'
-// });
+Feed.hasMany(FeedHeart, {foreignKey: 'id'});
 
-sequelize.sync({force: true}).then(() => {
+User.belongsToMany(Feed, {
+    through: FeedHeart, foreignKey: 'user_id'
+});
+Feed.belongsToMany(User, {
+    through: FeedHeart, foreignKey: 'feed_id'
+});
+
+sequelize.sync({force: false}).then(() => {
     console.log('table created');
 }).catch((err) => {
     if(err) {

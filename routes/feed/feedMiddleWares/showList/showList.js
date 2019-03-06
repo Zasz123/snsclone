@@ -5,7 +5,7 @@ const sequelize = require('../../../../database/connection');
 
 app.get('/', (req, res) => {
     sequelize.models.feed.findAll({
-        include: [sequelize.models.user],
+        include: [sequelize.models.user, sequelize.models.feedHeart, sequelize.models.feedImage],
         order: [['id', 'DESC']]
     })
     .then((result) => {

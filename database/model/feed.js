@@ -9,11 +9,6 @@ const feed = {
         type: Sequelize.STRING,
         allowNull: false
     },
-    feedImage: {
-        type: Sequelize.STRING,
-        allowNull: true,
-	defaultValue: "http://13.125.186.175/static/image/1.jpg"
-    },
     feedContents: {
         type: Sequelize.STRING,
         allowNull: false
