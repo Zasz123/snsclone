@@ -9,6 +9,7 @@ const writerSearchRouter = require('./feedMiddleWares/searchFeed/searchWriter');
 const showListRouter = require('./feedMiddleWares/showList/showList');
 const showFeedRouter = require('./feedMiddleWares/showPoster/tkd');
 const updateFeedRouter = require('./feedMiddleWares/updateFeed/updateFeed');
+const userFeedRouter = require('./feedMiddleWares/userFeed/users');
 
 // delete router
 router.use('/delete', deleteFeedRouter);
@@ -30,5 +31,8 @@ router.use('/tkd', showFeedRouter);
 
 // update feed router
 router.use('/update', updateFeedRouter);
+
+// user feed router
+router.use('/pro', userFeedRouter);
 
 module.exports = router;

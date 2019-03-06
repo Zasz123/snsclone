@@ -6,15 +6,16 @@ const sequelize = require('../../../../database/connection');
 const secretObj = require('../../../../config/jwt');
 
 const app = express();
-
+console.log('0');
 let _storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, '/home/ubuntu/dbguss/uploads');
+        cb(null, '/home/ubuntu/snsclone/uploads');
     },
     filename: (req, file, cb) => {
         cb(null, file.originalname + '-' + Date.now());
     }
 });
+console.log('1');
 
 const upload = multer({ storage: _storage });
 
@@ -23,10 +24,11 @@ let decoded;
 
 app.post('/', upload.single('userfile'), (req, res) => {
     // file check
+	console.log('2');
     if(req.file) {
-        path = '13.125.186.175/static/' + req.file.filename
+        path = 'http://13.125.186.175/static/' + req.file.filename
     } else {
-        path = '13.125.186.175/static/image/1.jpg'
+        path = 'http://13.125.186.175/static/image/1.jpg'
     }
     // login check
     if(req.body.token) {

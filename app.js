@@ -3,6 +3,7 @@ const express = require('express');
 const httpErrors = require('http-errors');
 const logger = require('morgan');
 const path = require('path');
+const cors = require('cors');
 
 require('./database/connection');
 
@@ -13,12 +14,14 @@ const heartRouter = require('./routes/heart/heartComtroller');
 
 const app = express();
 
+app.use(cors());
+
 app.set('views', path.join(__dirname, 'views'));
 // view engine setup
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({ extended: false }, {limit: '50mb'}));
 app.use(cookieParser());
 
 let dir = path.join(__dirname, 'uploads');

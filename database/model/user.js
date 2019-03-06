@@ -20,7 +20,7 @@ const user = {
     profile: {
         type: Sequelize.STRING,
         allowNull: true,
-        defaultValue: "13.125.186.175/static/image/1.jpg"
+        defaultValue: "http://13.125.186.175/static/image/1.jpg"
     }
 };
 

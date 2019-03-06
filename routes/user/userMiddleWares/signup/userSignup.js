@@ -15,6 +15,7 @@ app.post('/', (req, res) => {
             success: true,
             error: false
         });
+    
     }).catch((err) => {
         if(err) {
             console.log('회원가입 실패');

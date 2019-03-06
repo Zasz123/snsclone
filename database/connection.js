@@ -3,8 +3,8 @@ const Sequelize = require('sequelize');
 
 const model = require('./model');
 
-const sequelize = new Sequelize('yang', process.env.DB_USER, process.env.DB_PASS, {
-    host: process.env.DB_HOST,
+const sequelize = new Sequelize('yang', 'root', 'root', {
+    host: '127.0.0.1',
     port: '3306',
     dialect: 'mysql'
 });
@@ -51,7 +51,7 @@ Feed.belongsTo(User, {foreignKey: 'user_id'});
 //     through: User_Group, foreignKey: 'group_id'
 // });
 
-sequelize.sync({force: false}).then(() => {
+sequelize.sync({force: true}).then(() => {
     console.log('table created');
 }).catch((err) => {
     if(err) {
