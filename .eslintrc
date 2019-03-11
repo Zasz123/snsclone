@@ -8,6 +8,9 @@
   "rules": {
     "comma-dangle": 0,
     "max-len": ["error", {"code": 120, "ignoreComments": true, "ignoreUrls": true, "ignoreStrings": true}],
-    "no-unused-vars": ["error", { "argsIgnorePattern": "next" }]
+    "no-unused-vars": 0,
+    "prefer-destructuring": 0,
+    "no-plusplus": 0,
+    "no-array-constructor": 0
   }
 }

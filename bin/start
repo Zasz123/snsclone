@@ -7,8 +7,8 @@
 const debug = require('debug')('sequelizejoin:server');
 const http = require('http');
 
-//env path
-require('dotenv').config({path: '../.env'});
+// env path
+require('dotenv').config({ path: '../.env' });
 
 const app = require('../app');
 /**

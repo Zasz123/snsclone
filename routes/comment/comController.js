@@ -4,12 +4,12 @@ const router = Router();
 
 const makeCommentRouter = require('./comMiddleWares/makeComment/make');
 
-// const deleteCommentRouter = require('./comMiddleWares/deleteComment/delete');
+const deleteCommentRouter = require('./comMiddleWares/deleteComment/delete');
 
 // make comment router
 router.use('/', makeCommentRouter);
 
 // delete comment router
-// router.use('/', deleteCommentRouter);
+router.use('/', deleteCommentRouter);
 
 module.exports = router;

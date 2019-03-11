@@ -1,4 +1,4 @@
-let jwtObj = {};
+const jwtObj = {};
 
 jwtObj.secret = 'yanggang';
 
