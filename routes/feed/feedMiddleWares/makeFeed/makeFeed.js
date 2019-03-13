@@ -36,10 +36,10 @@ app.post('/', upload.array('userfile', 10), (req, res) => {
   console.log(req.files);
   if (req.file) {
     for (let i = 0; i <= req.files.length; i++) {
-      path[i] = `http://13.125.186.175/static/${req.files[i].filename}`;
+      path[i] = `http://13.125.186.175:8080/static/${req.files[i].filename}`;
     }
   } else {
-    path[0] = 'http://13.125.186.175/static/image/1.jpg';
+    path[0] = 'http://13.125.186.175:8080/static/image/1.jpg';
   }
   sequelize.models.feed.create({
     user_id: decoded.uid,

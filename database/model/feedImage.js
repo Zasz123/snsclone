@@ -8,7 +8,7 @@ const feedImage = {
   feedImage: {
     type: Sequelize.STRING,
     allowNull: true,
-    defaultValue: 'http://13.125.186.175/static/image/1.jpg'
+    defaultValue: 'http://13.125.186.175:8080/static/image/1.jpg'
   }
 };
 

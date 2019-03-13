@@ -40,7 +40,7 @@ app.post('/', upload.array('userfile', 10), (req, res) => {
   // }
   // file check
   console.log(req.files);
-  path[0] = 'http://13.125.186.175/static/image/1.jpg';
+  path[0] = 'http://13.125.186.175:8080/static/image/1.jpg';
   sequelize.models.feed.create({
     user_id: 1,
     feedContents: ' req.body.feedContents'

@@ -3,10 +3,10 @@ const Sequelize = require('sequelize');
 
 const model = require('./model');
 
-const sequelize = new Sequelize('yang', process.env.DB_USER, process.env.DB_PASS, {
-  host: process.env.DB_HOST,
+const sequelize = new Sequelize('yang', 'root', 'root', {
+  host: '127.0.0.1',
   port: '3306',
-  dialect: 'mysql'
+  dialect: 'mysql',
 });
 
 sequelize.authenticate()
@@ -39,7 +39,7 @@ Feed.belongsTo(User, { foreignKey: 'user_id' });
 Feed.hasMany(FeedImages, { foreignKey: 'feed_id' });
 FeedImages.belongsTo(Feed, { foreignKey: 'feed_id' });
 
-Feed.hasMany(FeedHeart, { foreignKey: 'id' });
+Feed.hasMany(FeedHeart, { foreignKey: 'feed_id' });
 
 User.belongsToMany(Feed, {
   through: FeedHeart, foreignKey: 'user_id'

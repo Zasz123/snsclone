@@ -8,7 +8,9 @@ const app = express();
 app.get('/:id', (req, res) => {
   sequelize.models.feed.findOne({
     where: { id: req.params.id },
-    include: [sequelize.models.user, sequelize.models.feedHeart]
+    include: [{ model: sequelize.models.user, attributes: ['nickName', 'realName', 'profile'] },
+      { model: sequelize.models.feedHeart, attributes: ['user_id'] },
+      { model: sequelize.models.feedImage, attributes: ['feedImage'] }]
   }).then((feed) => {
     sequelize.models.comment.findAll({
       where: { feed_id: req.params.id },

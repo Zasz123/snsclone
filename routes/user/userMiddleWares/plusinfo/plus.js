@@ -24,9 +24,9 @@ let decoded;
 app.post('/', upload.single('userfile'), (req, res) => {
   // file check
   if (req.file) {
-    path = `13.125.186.175/static/${req.file.filename}`;
+    path = `13.125.186.175:8080/static/${req.file.filename}`;
   } else {
-    path = '13.125.186.175/static/image/1.jpg';
+    path = '13.125.186.175:8080/static/image/1.jpg';
   }
   // login check
   if (req.body.token) {
