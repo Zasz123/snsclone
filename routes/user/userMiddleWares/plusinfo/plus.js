@@ -22,8 +22,10 @@ let path;
 let decoded;
 
 app.post('/', upload.single('userfile'), (req, res) => {
-  // file check
-  if (req.file) {
+  let token = req.body.token;
+  let tokens = token.replace( /\"/gi, "" );
+  // login check
+  if (tokens) {
     path = `13.125.186.175:8080/static/${req.file.filename}`;
   } else {
     path = '13.125.186.175:8080/static/image/1.jpg';

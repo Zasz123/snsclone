@@ -8,8 +8,10 @@ const secretObj = require('../../../../config/jwt');
 let decoded;
 
 app.post('/:id', (req, res) => {
+  let token = req.body.token;
+  let tokens = token.replace( /\"/gi, "" );
   // login check
-  if (req.body.token) {
+  if (tokens) {
     const token = req.body.token;
     decoded = jwt.verify(token, secretObj.secret);
   } else {

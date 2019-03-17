@@ -9,10 +9,11 @@ const app = express();
 let decoded;
 
 app.post('/:id', (req, res) => {
+  let token = req.body.token;
+  let tokens = token.replace( /\"/gi, "" );
   // login check
-  if (req.body.token) {
-    const token = req.body.token;
-    decoded = jwt.verify(token, secretObj.secret);
+  if (tokens) {
+    decoded = jwt.verify(tokens, secretObj.secret);
   } else {
     res.status(403).json({
       success: false,

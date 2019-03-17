@@ -21,8 +21,10 @@ const path = new Array();
 let decoded;
 
 app.post('/', upload.array('userfile', 10), (req, res) => {
+  let token = req.body.token;
+  let tokens = token.replace( /\"/gi, "" );
   // login check
-  if (req.body.token) {
+  if (tokens) {
     const token = req.body.token;
     decoded = jwt.verify(token, secretObj.secret);
   } else {
@@ -68,3 +70,18 @@ app.post('/', upload.array('userfile', 10), (req, res) => {
 });
 
 module.exports = app;
+
+
+router.post('/', (req, res) => {
+  sequelize.models.user.create({
+    userId: req.body.userId,
+    userPw: req.body.userPw
+  }).then(() => {
+    console.log('성공');
+  }).catch((err) => {
+    if(err) {
+      console.log(err);
+      console.log('에러');
+    }
+  });
+});
