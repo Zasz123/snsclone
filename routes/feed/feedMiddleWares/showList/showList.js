@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
     order: [['id', 'DESC']],
     attributes: ['feedContents', 'heart', 'createdAt'],
     include: [{ model: sequelize.models.user, attributes: ['nickName', 'realName', 'profile'] },
-      { model: sequelize.models.feedHeart, attributes: ['user_id'], include: [{model: sequelize.models.user, attributes: ['realName', 'nickName']}] },
+      { model: sequelize.models.feedHeart, attributes: ['user_id'], include: [{model: sequelize.models.user, attributes: ['realName', 'nickName', 'profile']}] },
       { model: sequelize.models.feedImage, attributes: ['feedImage'] }]
   })
     .then((result) => {

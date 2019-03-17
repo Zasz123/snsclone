@@ -7,11 +7,9 @@ app.get('/:id', (req, res) => {
   sequelize.models.feed.findAll({
     order: [['id', 'DESC']],
     attributes: ['feedContents', 'heart', 'createdAt'],
-    include: [{
-      model: sequelize.models.user,
-      attributes: ['realName', 'nickName']
-    },
-    { model: sequelize.models.feedHeart, attributes: ['user_id'], include: [{model: sequelize.models.user, attributes: ['realName', 'nickName']}] },
+    include: [
+    //   { model: sequelize.models.user, attributes: ['realName', 'nickName']},
+    { model: sequelize.models.feedHeart, attributes: ['user_id'], include: [{model: sequelize.models.user, attributes: ['realName', 'nickName', 'profile']}] },
     { model: sequelize.models.feedImage, attributes: ['feedImage'] }],
     order: [['id', 'DESC']]
   }, {
@@ -24,12 +22,20 @@ app.get('/:id', (req, res) => {
       attributes: ['follower_id'],
       include: [{
         model: sequelize.models.user,
-        attributes: ['realName', 'nickName']
+        attributes: ['realName', 'nickName', 'profile']
       }]
     }).then((follower) => {
-      res.json({
-        follower,
-        feeds: result
+      sequelize.models.user.findOne({
+        attributes: ['realName', 'nickName', 'profile'],
+        where: {
+          id: req.params.id
+        }
+      }).then((users) => {
+        res.json({
+          users,
+          follower,
+          feeds: result
+        });
       });
     });
   }).catch((err) => {

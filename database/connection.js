@@ -34,6 +34,9 @@ Feed.belongsTo(User, { foreignKey: 'user_id' });
 Feed.hasMany(Comments, { foreignKey: 'feed_id' });
 Comments.belongsTo(Feed, { foreignKey: 'feed_id' });
 
+User.hasMany(Comments, { foreignKey: 'user_id' });
+Comments.belongsTo(User, { foreignKey: 'user_id' });
+
 // User.hasMany(Feed, { foreignKey: 'user_id' });
 // Feed.belongsTo(User, { foreignKey: 'user_id' });
 
@@ -45,6 +48,12 @@ FeedHeart.belongsTo(Feed, { foreignKey: 'feed_id' });
 
 User.hasMany(FeedHeart, { foreignKey: 'user_id' });
 FeedHeart.belongsTo(User, { foreignKey: 'user_id' });
+
+Comments.hasMany(ComHeart, { foreignKey: 'comment_id' });
+ComHeart.belongsTo(Comments, { foreignKey: 'comment_id' });
+
+User.hasMany(ComHeart, { foreignKey: 'user_id' });
+ComHeart.belongsTo(User, { foreignKey: 'user_id' });
 
 User.hasMany(Follow, { foreignKey: 'follower_id' });
 Follow.belongsTo(User, { foreignKey: 'follower_id' });

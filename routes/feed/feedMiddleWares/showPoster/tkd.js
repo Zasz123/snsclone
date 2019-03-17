@@ -10,11 +10,14 @@ app.get('/:id', (req, res) => {
     where: { id: req.params.id },
     attributes: ['feedContents', 'heart', 'createdAt'],
     include: [{ model: sequelize.models.user, attributes: ['nickName', 'realName', 'profile'] },
-      { model: sequelize.models.feedHeart, attributes: ['user_id'], include: [{model: sequelize.models.user, attributes: ['realName', 'nickName']}] },
+      { model: sequelize.models.feedHeart, attributes: ['user_id'], include: [{model: sequelize.models.user, attributes: ['realName', 'nickName', 'profile']}] },
       { model: sequelize.models.feedImage, attributes: ['feedImage'] }]
   }).then((feed) => {
     sequelize.models.comment.findAll({
+      attributes: ['commentContent', 'heart', 'createdAt'],
       where: { feed_id: req.params.id },
+      include: [{ model: sequelize.models.user, attributes: ['nickName', 'realName', 'profile'] },
+      { model: sequelize.models.comHeart, attributes: ['user_id'], include: [{model: sequelize.models.user, attributes: ['realName', 'nickName', 'profile']}] }]
     }).then((comment) => {
       res.json({
         feed,
