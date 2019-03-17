@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
   })
     .then((result) => {
       res.json({
-        des: result
+        result
       });
     }).catch((err) => {
       if (err) {

@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 
 const model = require('./model');
 
-const sequelize = new Sequelize('yang', 'root', 'root', {
+const sequelize = new Sequelize('yang', 'root', 'cjdfhrql', {
   host: '127.0.0.1',
   port: '3306',
   dialect: 'mysql',
@@ -43,6 +43,9 @@ FeedImages.belongsTo(Feed, { foreignKey: 'feed_id' });
 Feed.hasMany(FeedHeart, { foreignKey: 'feed_id' });
 FeedHeart.belongsTo(Feed, { foreignKey: 'feed_id' });
 
+User.hasMany(FeedHeart, { foreignKey: 'user_id' });
+FeedHeart.belongsTo(User, { foreignKey: 'user_id' });
+
 User.hasMany(Follow, { foreignKey: 'follower_id' });
 Follow.belongsTo(User, { foreignKey: 'follower_id' });
 
@@ -54,7 +57,7 @@ Follow.belongsTo(User, { foreignKey: 'follower_id' });
 // });
 
 
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
   console.log('table created');
 }).catch((err) => {
   if (err) {

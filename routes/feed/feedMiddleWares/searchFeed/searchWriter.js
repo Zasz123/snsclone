@@ -6,12 +6,11 @@ const sequelize = require('../../../../database/connection');
 // query 값은 nickName
 app.get('/', (req, res) => {
   sequelize.models.feed.findAll({
-    include: [{
-      model: sequelize.models.user,
-      where: {
-        nickName: req.query.nickName
-      }
-    }]
+    order: [['id', 'DESC']],
+    attributes: ['feedContents', 'heart', 'createdAt'],
+    include: [{ model: sequelize.models.user,where: { nickName: req.query.nickName }, attributes: ['nickName', 'realName', 'profile'] },
+    { model: sequelize.models.feedHeart, attributes: ['user_id'] },
+    { model: sequelize.models.feedImage, attributes: ['feedImage'] }]
   }).then((result) => {
     res.json(result);
   }).catch((err) => {

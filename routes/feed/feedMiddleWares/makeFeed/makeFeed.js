@@ -23,7 +23,7 @@ let decoded;
 app.post('/', upload.array('userfile', 10), (req, res) => {
   // login check
   if (req.body.token) {
-    const token = req.headers.token;
+    const token = req.body.token;
     decoded = jwt.verify(token, secretObj.secret);
   } else {
     console.log('not logged in');
@@ -45,7 +45,7 @@ app.post('/', upload.array('userfile', 10), (req, res) => {
     user_id: decoded.uid,
     feedContents: req.body.feedContents
   }).then((result) => {
-    for (let u = 0; u <= path.length; u++) {
+    for (let u = 1; u <= path.length; u++) {
       sequelize.models.feedImage.create({
         feed_id: result.id,
         feedImage: path[u]

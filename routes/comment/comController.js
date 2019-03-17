@@ -10,6 +10,6 @@ const deleteCommentRouter = require('./comMiddleWares/deleteComment/delete');
 router.use('/', makeCommentRouter);
 
 // delete comment router
-router.use('/', deleteCommentRouter);
+router.use('/delete', deleteCommentRouter);
 
 module.exports = router;

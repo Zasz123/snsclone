@@ -8,6 +8,7 @@ const app = express();
 app.get('/:id', (req, res) => {
   sequelize.models.feed.findOne({
     where: { id: req.params.id },
+    attributes: ['feedContents', 'heart', 'createdAt'],
     include: [{ model: sequelize.models.user, attributes: ['nickName', 'realName', 'profile'] },
       { model: sequelize.models.feedHeart, attributes: ['user_id'] },
       { model: sequelize.models.feedImage, attributes: ['feedImage'] }]

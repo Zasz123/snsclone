@@ -5,11 +5,13 @@ const sequelize = require('../../../../database/connection');
 
 app.get('/:id', (req, res) => {
   sequelize.models.feed.findAll({
+    order: [['id', 'DESC']],
+    attributes: ['feedContents', 'heart', 'createdAt'],
     include: [{
       model: sequelize.models.user,
       attributes: ['realName', 'nickName']
     },
-    { model: sequelize.models.feedHeart, attributes: ['user_id'] },
+    { model: sequelize.models.feedHeart, attributes: ['user_id'], include: [{model: sequelize.models.user, attributes: ['realName', 'nickName']}] },
     { model: sequelize.models.feedImage, attributes: ['feedImage'] }],
     order: [['id', 'DESC']]
   }, {
@@ -27,7 +29,7 @@ app.get('/:id', (req, res) => {
     }).then((follower) => {
       res.json({
         follower,
-        result
+        feeds: result
       });
     });
   }).catch((err) => {

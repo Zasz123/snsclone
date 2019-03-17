@@ -4,7 +4,6 @@ const router = Router();
 
 const deleteFeedRouter = require('./feedMiddleWares/deleteFeed/deleteFeed');
 const makeFeedRouter = require('./feedMiddleWares/makeFeed/makeFeed');
-const titleSearchRouter = require('./feedMiddleWares/searchFeed/searchTitle');
 const writerSearchRouter = require('./feedMiddleWares/searchFeed/searchWriter');
 const showListRouter = require('./feedMiddleWares/showList/showList');
 const showFeedRouter = require('./feedMiddleWares/showPoster/tkd');
@@ -19,9 +18,6 @@ router.use('/delete', deleteFeedRouter);
 
 // make Feed router
 router.use('/', makeFeedRouter);
-
-// search title router
-router.use('/title', titleSearchRouter);
 
 // search writer router
 router.use('/wrtier', writerSearchRouter);
