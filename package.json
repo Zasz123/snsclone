@@ -9,6 +9,7 @@
     "test": "mocha --recursive"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.5",
     "debug": "^4.1.1",
@@ -21,13 +22,16 @@
     "multer": "^1.4.1",
     "mysql2": "^1.6.5",
     "npm": "^6.8.0",
-    "sequelize": "^4.43.0"
+    "sequelize": "^4.43.0",
+    "swagger": "^0.7.5"
   },
   "devDependencies": {
     "eslint": "^5.10.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-react": "^7.11.1"
+    "eslint-plugin-react": "^7.11.1",
+    "swagger-jsdoc": "^3.2.7",
+    "swagger-ui-express": "^4.0.2"
   }
 }

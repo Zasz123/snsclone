@@ -18,25 +18,25 @@ const testtwo = require('./feedMiddleWares/makeFeed/twoImage');
 router.use('/delete', deleteFeedRouter);
 
 // make Feed router
-router.use('/insert', makeFeedRouter);
+router.use('/', makeFeedRouter);
 
 // search title router
-router.use('/search/t', titleSearchRouter);
+router.use('/title', titleSearchRouter);
 
 // search writer router
-router.use('/search/w', writerSearchRouter);
+router.use('/wrtier', writerSearchRouter);
 
 // show list router
-router.use('/show', showListRouter);
+router.use('/list', showListRouter);
 
 // show feed router
-router.use('/tkd', showFeedRouter);
+router.use('/', showFeedRouter);
 
 // update feed router
-router.use('/update', updateFeedRouter);
+router.use('/updater', updateFeedRouter);
 
 // user feed router
-router.use('/pro', userFeedRouter);
+router.use('/profile', userFeedRouter);
 
 
 router.use('/one', testone);

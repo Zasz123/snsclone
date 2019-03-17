@@ -3,13 +3,13 @@ const epxress = require('express');
 const app = epxress();
 const sequelize = require('../../../../database/connection');
 
-// query 값은 userName
+// query 값은 nickName
 app.get('/', (req, res) => {
   sequelize.models.feed.findAll({
     include: [{
       model: sequelize.models.user,
       where: {
-        userName: req.query.userName
+        nickName: req.query.nickName
       }
     }]
   }).then((result) => {

@@ -21,3 +21,7 @@ exports.comHeart = comHeart;
 const feedImage = require('./model/feedImage');
 
 exports.feedImage = feedImage;
+
+const follow = require('./model/follow');
+
+exports.follow = follow;

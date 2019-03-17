@@ -8,7 +8,7 @@ const secretObj = require('../../../../config/jwt');
 const app = express();
 const storages = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '/home/ubuntu/snsclone/uploads');
+    cb(null, '../../../../uploads');
   },
   filename: (req, file, cb) => {
     cb(null, `${file.originalname}-${Date.now()}`);
@@ -23,7 +23,7 @@ let decoded;
 app.post('/', upload.array('userfile', 10), (req, res) => {
   // login check
   if (req.body.token) {
-    const token = req.body.token;
+    const token = req.headers.token;
     decoded = jwt.verify(token, secretObj.secret);
   } else {
     console.log('not logged in');
@@ -33,9 +33,9 @@ app.post('/', upload.array('userfile', 10), (req, res) => {
     });
   }
   // file check
-  console.log(req.files);
+  const files = req.files;
   if (req.file) {
-    for (let i = 0; i <= req.files.length; i++) {
+    for (let i = 0; i <= files.length; i++) {
       path[i] = `http://13.125.186.175:8080/static/${req.files[i].filename}`;
     }
   } else {
@@ -45,7 +45,7 @@ app.post('/', upload.array('userfile', 10), (req, res) => {
     user_id: decoded.uid,
     feedContents: req.body.feedContents
   }).then((result) => {
-    for (let u = 0; u <= req.files.length; u++) {
+    for (let u = 0; u <= path.length; u++) {
       sequelize.models.feedImage.create({
         feed_id: result.id,
         feedImage: path[u]

@@ -5,17 +5,30 @@ const sequelize = require('../../../../database/connection');
 
 app.get('/:id', (req, res) => {
   sequelize.models.feed.findAll({
-    include: [sequelize.models.user, { attributes: ['realName', 'userName'] },
-      { model: sequelize.models.feedHeart, attributes: ['user_id'] },
-      { model: sequelize.models.feedImage, attributes: ['feedImage'] }],
+    include: [{
+      model: sequelize.models.user,
+      attributes: ['realName', 'nickName']
+    },
+    { model: sequelize.models.feedHeart, attributes: ['user_id'] },
+    { model: sequelize.models.feedImage, attributes: ['feedImage'] }],
     order: [['id', 'DESC']]
   }, {
     where: {
       user_id: req.params.id
     }
   }).then((result) => {
-    res.json({
-      result
+    sequelize.models.follow.findAll({
+      where: { followed_id: req.params.id },
+      attributes: ['follower_id'],
+      include: [{
+        model: sequelize.models.user,
+        attributes: ['realName', 'nickName']
+      }]
+    }).then((follower) => {
+      res.json({
+        follower,
+        result
+      });
     });
   }).catch((err) => {
     if (err) {

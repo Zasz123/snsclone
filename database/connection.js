@@ -26,6 +26,7 @@ const Comments = sequelize.define('comment', model.comment);
 const FeedHeart = sequelize.define('feedHeart', model.feedHeart);
 const ComHeart = sequelize.define('comHeart', model.comHeart);
 const FeedImages = sequelize.define('feedImage', model.feedImage);
+const Follow = sequelize.define('follow', model.follow);
 
 User.hasMany(Feed, { foreignKey: 'user_id' });
 Feed.belongsTo(User, { foreignKey: 'user_id' });
@@ -33,22 +34,27 @@ Feed.belongsTo(User, { foreignKey: 'user_id' });
 Feed.hasMany(Comments, { foreignKey: 'feed_id' });
 Comments.belongsTo(Feed, { foreignKey: 'feed_id' });
 
-User.hasMany(Feed, { foreignKey: 'user_id' });
-Feed.belongsTo(User, { foreignKey: 'user_id' });
+// User.hasMany(Feed, { foreignKey: 'user_id' });
+// Feed.belongsTo(User, { foreignKey: 'user_id' });
 
 Feed.hasMany(FeedImages, { foreignKey: 'feed_id' });
 FeedImages.belongsTo(Feed, { foreignKey: 'feed_id' });
 
 Feed.hasMany(FeedHeart, { foreignKey: 'feed_id' });
+FeedHeart.belongsTo(Feed, { foreignKey: 'feed_id' });
 
-User.belongsToMany(Feed, {
-  through: FeedHeart, foreignKey: 'user_id'
-});
-Feed.belongsToMany(User, {
-  through: FeedHeart, foreignKey: 'feed_id'
-});
+User.hasMany(Follow, { foreignKey: 'follower_id' });
+Follow.belongsTo(User, { foreignKey: 'follower_id' });
 
-sequelize.sync({ force: true }).then(() => {
+// User.belongsToMany(Feed, {
+//   through: FeedHeart, foreignKey: 'user_id'
+// });
+// Feed.belongsToMany(User, {
+//   through: FeedHeart, foreignKey: 'feed_id'
+// });
+
+
+sequelize.sync({ force: false }).then(() => {
   console.log('table created');
 }).catch((err) => {
   if (err) {

@@ -4,6 +4,7 @@ const httpErrors = require('http-errors');
 const logger = require('morgan');
 const path = require('path');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 require('./database/connection');
 
@@ -20,8 +21,8 @@ app.set('views', path.join(__dirname, 'views'));
 // view engine setup
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: false }, { limit: '50mb' }));
+app.use(bodyParser.json({ limit: '100mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '100mb', parameterLimit: 50000 }));
 app.use(cookieParser());
 
 const dir = path.join(__dirname, 'uploads');
