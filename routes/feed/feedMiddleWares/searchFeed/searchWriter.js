@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
     order: [['id', 'DESC']],
     attributes: ['feedContents', 'heart', 'createdAt'],
     include: [{ model: sequelize.models.user,where: { nickName: req.query.nickName }, attributes: ['nickName', 'realName', 'profile'] },
-    { model: sequelize.models.feedHeart, attributes: ['user_id'] },
+    { model: sequelize.models.feedHeart, attributes: ['user_id'], include: [{model: sequelize.models.user, attributes: ['realName', 'nickName']}] },
     { model: sequelize.models.feedImage, attributes: ['feedImage'] }]
   }).then((result) => {
     res.json(result);

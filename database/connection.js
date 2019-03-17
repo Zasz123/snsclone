@@ -57,7 +57,7 @@ Follow.belongsTo(User, { foreignKey: 'follower_id' });
 // });
 
 
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
   console.log('table created');
 }).catch((err) => {
   if (err) {
