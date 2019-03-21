@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 
 const model = require('./model');
 
-const sequelize = new Sequelize('yang', 'root', 'cjdfhrql', {
+const sequelize = new Sequelize('yang', 'root', 'root', {
   host: '127.0.0.1',
   port: '3306',
   dialect: 'mysql',
