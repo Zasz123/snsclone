@@ -10,12 +10,11 @@ const app = express();
 let decoded;
 
 app.post('/', (req, res) => {
-  let token = req.body.token;
-  let tokens = token.replace( /\"/gi, "" );
   // login check
-  if (tokens) {
-    const token = req.body.token;
-    decoded = jwt.verify(token, secretObj.secret);
+  if (req.body.token) {
+    let token = req.body.token;
+    let tokens = token.replace( /\"/gi, "");
+    decoded = jwt.verify(tokens, secretObj.secret);
   } else {
     console.log('not logged in');
     res.status(403).json({

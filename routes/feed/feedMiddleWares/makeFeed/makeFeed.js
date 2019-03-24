@@ -20,12 +20,12 @@ const upload = multer({ storage: storages });
 const path = new Array();
 let decoded;
 
-app.post('/', upload.array('userfile', 10), (req, res) => {
-  
+app.post('/', upload.any('userfile', 10), (req, res) => {
+	console.log(req.body);  
   if(req.body.token) {
     let token = req.body.token;
     let tokens = token.replace( /\"/gi, "" );
-    decoded = jwt.verify(token, secretObj.secret);
+    decoded = jwt.verify(tokens, secretObj.secret);
   } else {
     console.log('not logged in');
     res.status(403).json({
