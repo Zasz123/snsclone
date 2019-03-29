@@ -34,10 +34,8 @@ app.post('/', upload.any('userfile', 10), (req, res) => {
     });
   }
   // file check
-  console.log(req.files[0]);
-  if (req.files) {
+  if (req.files && req.files.length) {
     const files = req.files;
-    console.log(files[0].filename);
     for (let i = 1; i <= files.length; i++) {
 	    console.log(i);
       path[i-1] = 'http://13.125.186.175:8080/static/'+req.files[i-1].filename;
