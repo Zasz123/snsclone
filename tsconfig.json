@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "removeComments": true,
+    "sourceMap": true,
+    "outDir": "app",
+    "rootDir": "src",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "@middlewares/*": "@src/routes/middlewares/*" ,
+      "@conrtollers/*": "@src/routes/controllers/*" ,
+      "@model/*": [ "@database/models/*"] ,
+    }
+  },
+  "exclude":[
+    "node_modules"
+  ]
+}
