@@ -46,5 +46,4 @@ app.use((req, res, next) => {
 
 app.use(ErrorMiddleware);
 
-
 export default app;
