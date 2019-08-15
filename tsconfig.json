@@ -9,11 +9,11 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "baseUrl": ".",
-    "paths": {
-      "@middlewares/*": "@src/routes/middlewares/*" ,
-      "@conrtollers/*": "@src/routes/controllers/*" ,
-      "@model/*": [ "@database/models/*"] ,
-    }
+    // "paths": {
+    //   "@middlewares/*": "@src/routes/middlewares/*" ,
+    //   "@conrtollers/*": "@src/routes/controllers/*" ,
+    //   "@model/*": [ "@database/models/*"] ,
+    // }
   },
   "exclude":[
     "node_modules"

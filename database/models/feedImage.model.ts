@@ -17,7 +17,7 @@ export default class FeedImage extends Model<FeedImage> {
     @Column(DataType.INTEGER)
     feed_id: number
 
-    @AllowNull(false)
+    // @AllowNull(false)
     @Column(DataType.STRING)
     feedImage: string
 

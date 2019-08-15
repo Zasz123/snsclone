@@ -8,27 +8,32 @@ import FeedImage from '../../../../../database/models/feedImage.model';
 const MakeFeed = async (req: Request, res: Response, next: NextFunction) => {
 
     const user = res.locals.user;
+
     let file: Object = new Array();
     let files: string[] = new Array();
 
-    for(let i = 0; i < req.files.length; i++ ) {
-        file[i] = req.files[i];
-    }
+    if( req.files && req.files.length) {
+    
+        for(let i = 0; i < req.files.length; i++ ) {
+            file[i] = req.files[i];
+        }
+    
+        for(let i in file) {
+            files.push('http://localhost:3000/static/' + file[i].filename);
+        }
 
-    for(let i in file) {
-        files.push('http://localhost:3000/static/' + file[i].filename);
+    } else {
+        files = []
     }
 
     try{
 
-        const feed = await Feed.create({
+        await Feed.create({
             user_id: user.uid,
             feedContents: req.body.feedContents,
-        });
-
-        await FeedImage.create({
-            feed_id: feed.id,
-            feedImage: files.reduce( (a, b) => b )
+            feedImage: files.map(feedImage => ({feedImage}))
+        }, {
+            include: [{model: FeedImage}]
         });
 
         res.json({

@@ -3,13 +3,24 @@ import { Router } from 'express';
 const router = Router();
 
 // User Controller
-import userController from './controllers/user.controller';
+import UserController from './controllers/user.controller';
 
 // Feed Controller
-import feedController from './controllers/feed.controller';
+import FeedController from './controllers/feed.controller';
 
-router.use('/users', userController);
+// Comment Controller
+import CommentComtroller from './controllers/comment.controller';
 
-router.use('/feeds', feedController);
+// Heart controller
+import HeartController from './controllers/heart.controller';
+
+
+router.use('/users', UserController);
+
+router.use('/feeds', FeedController);
+
+router.use('/comments', CommentComtroller);
+
+router.use('/hearts', HeartController);
 
 export default router;

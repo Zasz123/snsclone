@@ -13,8 +13,6 @@ const UserFollow = (req: Request, res: Response, next: NextFunction) => {
             followed_id: req.params.id,
             follower_id: user.uid
         });
-
-
         
     } catch(error) {
         console.log(error);
